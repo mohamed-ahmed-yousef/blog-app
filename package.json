@@ -10,6 +10,9 @@
 		"checkts": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@tanstack/react-query": "^5.45.1",
+		"@tanstack/react-query-devtools": "^5.45.1",
+		"axios": "^1.7.2",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"lefthook": "^1.6.17",
@@ -19,7 +22,6 @@
 		"react": "^18",
 		"react-dom": "^18",
 		"react-hook-form": "^7.52.0",
-		"react-query": "^3.39.3",
 		"styled-components": "^6.1.11",
 		"tailwind-merge": "^2.3.0",
 		"tailwindcss-animate": "^1.0.7",

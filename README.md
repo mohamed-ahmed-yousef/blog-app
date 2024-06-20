@@ -1,4 +1,4 @@
-# Intership slash program task
+# Slash Frontend Internship task
 
 ## Getting Started
 
