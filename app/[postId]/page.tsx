@@ -7,8 +7,9 @@ export default function CurrentPost({
 	params,
 }: { params: { postId: string } }) {
 	const { data, isPending } = useGetOnePost({ id: params.postId });
-	if (isPending) return <LoadingSpinner className="m-auto w-20" />;
+	if (isPending) return <LoadingSpinner className="w-20 m-auto" />;
 	if (!data) return <NotFound />;
+
 	return (
 		<main>
 			<h1>{data.title}</h1>

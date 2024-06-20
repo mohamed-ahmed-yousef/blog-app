@@ -4,8 +4,9 @@ export class PostsAPI {
 	constructor(private http: AxiosInstance) {}
 
 	getPosts = ({ pageParam = 1 }) => {
+		console.info(pageParam, "pageParam");
 		return this.http
-			.get("/posts", { params: { _limit: 25, offset: pageParam } })
+			.get("/posts", { params: { _limit: 25, _page: pageParam } })
 			.then((res) => {
 				return res.data;
 			});

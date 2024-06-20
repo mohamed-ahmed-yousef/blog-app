@@ -12,7 +12,7 @@ export default function Home() {
 		return <LoadingSpinner className="w-20 h-screen m-auto" />;
 
 	const newData: Pages = data.pages;
-
+	console.info(newData, "page info");
 	return (
 		<main className="page-container bg-slate-200 text-slate-950">
 			<Title>Posts</Title>
