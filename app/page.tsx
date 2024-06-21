@@ -1,20 +1,26 @@
 "use client";
 import { useGetPosts } from "@/api/hooks/use-posts";
+import { Button } from "@/components/styled-components/button";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import type { Pages } from "@/types";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import styled from "styled-components";
 import PostCard from "./_components/card";
+import { getCurrentPosts } from "./_components/lib/add-post";
 
 export default function Home() {
 	const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useGetPosts();
 	if (isPending || !data)
-		return <LoadingSpinner className="w-20 h-screen m-auto" />;
+		return (
+			<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
+				<LoadingSpinner size={40} className="absolute m-0" />
+			</div>
+		);
 
 	const newData: Pages = data.pages;
-
+	const createdPost = getCurrentPosts();
 	return (
 		<main className="page-container bg-slate-900 text-slate-950">
 			<Flex>
@@ -30,9 +36,12 @@ export default function Home() {
 				</Flex>
 			</Flex>
 			<section className="md:grid-cols-2 lg:grid-cols-3 grid gap-3">
+				{createdPost.map((post) => (
+					<PostCard key={post.id} post={post} />
+				))}
 				{Array.isArray(newData) &&
 					newData.map((page) =>
-						page.map((ele) => <PostCard key={ele.id} page={ele} />),
+						page.map((post) => <PostCard key={post.id} post={post} />),
 					)}
 			</section>
 			<Button
@@ -59,33 +68,10 @@ const Title = styled.h1`
 	font-size: 2.5rem;
 	font-weight: 500;
 	color: #e2e8f0;
-
 `;
+
 const Flex = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-`;
-
-const Button = styled.button`
-  background-color: #1e293b;
-
-margin: 20px auto;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display:flex;
-  
-
-  &:hover {
-    background-color: #334155; 
-  }
-  &[disabled] {
-    background-color: #808080; 
-    cursor: not-allowed;
-    opacity: 0.5; 
-  }
 `;
