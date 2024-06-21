@@ -14,13 +14,13 @@ export default function Home() {
 		return <LoadingSpinner className="w-20 h-screen m-auto" />;
 
 	const newData: Pages = data.pages;
-	// console.info(newData, "page info");
+
 	return (
 		<main className="page-container bg-slate-900 text-slate-950">
 			<Flex>
 				<Title>Posts</Title>
 				<Flex>
-					<Button>
+					<Button type="button">
 						<Link href="/create-post">
 							<Flex>
 								<Plus /> Add Post
@@ -67,7 +67,7 @@ const Flex = styled.div`
 	align-items: center;
 `;
 
-export const Button = styled.button`
+const Button = styled.button`
   background-color: #1e293b;
 
 margin: 20px auto;

@@ -5,22 +5,15 @@ import { useToast } from "@/components/ui/use-toast";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { FormProvider } from "react-hook-form";
 import styled from "styled-components";
-import { z } from "zod";
-import { Button } from "../page";
-
-export const postSchema = z.object({
-	userId: z.coerce.number(),
-	title: z.string(),
-	body: z.string(),
-});
+import { postSchema } from "./schema";
 
 export default function CreatePost() {
+	const { toast } = useToast();
 	const form = useZodForm({
 		schema: postSchema,
 	});
-	const { toast } = useToast();
+
 	const handleSubmit = () => {
-		console.log("yousef");
 		toast({
 			title: "Error",
 			description: "no backend to post data",
@@ -65,4 +58,24 @@ const Section = styled.section`
   height: fit-content;
   transition: all 0.3s ease-in-out;
   background-color: #94a3b8;
+`;
+
+const Button = styled.button`
+  background-color: #1e293b;
+margin: 20px auto;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display:flex;
+  &:hover {
+    background-color: #334155; 
+  }
+  &[disabled] {
+    background-color: #808080; 
+    cursor: not-allowed;
+    opacity: 0.5; 
+  }
 `;
