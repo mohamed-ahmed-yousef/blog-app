@@ -2,13 +2,24 @@ import type { Page } from "@/types";
 import Link from "next/link";
 import styled from "styled-components";
 
+export default function PostCard({ page }: { page: Page }) {
+	return (
+		<StyledPostCard>
+			<H1>{page.title}</H1>
+			<Link href={`/post/${page.id}`} className="text-blue-600 underline">
+				Read more
+			</Link>
+		</StyledPostCard>
+	);
+}
+
 const StyledPostCard = styled.section`
   display: flex; 
   flex-direction: column; 
   padding: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: #94a3b8;
 
   &:hover {
@@ -21,14 +32,3 @@ const H1 = styled.h1`
     font-size: 1.2rem;
     line-height: 1.5;
   `;
-
-export default function PostCard({ page }: { page: Page }) {
-	return (
-		<StyledPostCard>
-			<H1>{page.title}</H1>
-			<Link href={`${page.id}`} className="unerline text-blue-600">
-				Read more
-			</Link>
-		</StyledPostCard>
-	);
-}
