@@ -74,9 +74,6 @@ importers:
       "@biomejs/biome":
         specifier: 1.8.2
         version: 1.8.2
-      "@swc/plugin-styled-components":
-        specifier: ^2.0.8
-        version: 2.0.8
       "@types/node":
         specifier: ^20
         version: 20.14.6
@@ -783,12 +780,6 @@ packages:
     resolution:
       {
         integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==,
-      }
-
-  "@swc/plugin-styled-components@2.0.8":
-    resolution:
-      {
-        integrity: sha512-aAIqnrfxLeBPubsDWtOjR/lR42iDweSVKlerE87BxlXavNajSerPjUzSaQdysZ8+V9NdE8VD65TjA+DQYs83kQ==,
       }
 
   "@tanstack/query-core@5.45.0":
@@ -2514,10 +2505,6 @@ snapshots:
     dependencies:
       "@swc/counter": 0.1.3
       tslib: 2.6.3
-
-  "@swc/plugin-styled-components@2.0.8":
-    dependencies:
-      "@swc/counter": 0.1.3
 
   "@tanstack/query-core@5.45.0": {}
 
