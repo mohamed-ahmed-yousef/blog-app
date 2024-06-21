@@ -9,6 +9,7 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { Suspense } from "react";
+import NavBar from "./_components/nav-bar";
 
 const queryClient = new QueryClient();
 export default function App({ children }: { children: React.ReactNode }) {
@@ -35,7 +36,10 @@ export default function App({ children }: { children: React.ReactNode }) {
 			/>
 
 			<QueryClientProvider client={queryClient}>
-				<HydrationBoundary>{children}</HydrationBoundary>
+				<HydrationBoundary>
+					<NavBar />
+					{children}
+				</HydrationBoundary>
 				<ReactQueryDevtools />
 			</QueryClientProvider>
 		</Suspense>

@@ -1,10 +1,11 @@
 "use client";
 import { useGetOnePost } from "@/api/hooks/use-posts";
-import { getCurrentPosts } from "@/app/create-post/page";
+import { getCurrentPosts } from "@/app/_components/lib/add-post";
 import { Main } from "@/components/styled-components/main";
 import { P } from "@/components/styled-components/p";
 import { Section } from "@/components/styled-components/section";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import type { Page } from "@/types";
 import Link from "next/link";
 import styled from "styled-components";
 import NotFound from "../../not-found";
@@ -14,7 +15,7 @@ export default function CurrentPost({
 }: { params: { postId: string } }) {
 	const { data, isPending } = useGetOnePost({ id: params.postId });
 	const createdPost = getCurrentPosts().find(
-		(post) => post.id === Number(params.postId),
+		(post: Page) => post.id === Number(params.postId),
 	);
 
 	if (isPending)

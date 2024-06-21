@@ -7,7 +7,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import styled from "styled-components";
 import PostCard from "./_components/card";
-import { getCurrentPosts } from "./create-post/page";
+import { getCurrentPosts } from "./_components/lib/add-post";
 
 export default function Home() {
 	const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =

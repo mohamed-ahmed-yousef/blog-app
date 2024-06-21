@@ -5,19 +5,18 @@ import { Section } from "@/components/styled-components/section";
 import { FormInput } from "@/components/ui/input-form";
 import { useToast } from "@/components/ui/use-toast";
 import { useZodForm } from "@/lib/use-zod-schema";
-import type { Page } from "@/types";
 import { useRouter } from "next/navigation";
 import { FormProvider } from "react-hook-form";
 import { z } from "zod";
-
-export const postSchema = z.object({
-	title: z.string(),
-	body: z.string(),
-});
+import { addNewPost } from "../_components/lib/add-post";
 
 export default function CreatePost() {
 	const router = useRouter();
 	const { toast } = useToast();
+	const postSchema = z.object({
+		title: z.string(),
+		body: z.string(),
+	});
 	const form = useZodForm({
 		schema: postSchema,
 	});
@@ -48,18 +47,3 @@ export default function CreatePost() {
 		</Main>
 	);
 }
-export const getCurrentPosts = (): Page[] => {
-	const posts = localStorage.getItem("posts");
-	return posts ? JSON.parse(posts) : [];
-};
-
-const addNewPost = (data: Omit<Page, "userId" | "id">) => {
-	const currentPosts = getCurrentPosts();
-	const newId = currentPosts.length + 100 + 1;
-	const newData = {
-		...data,
-		userId: Math.floor(Math.random() * 91) + 10,
-		id: newId,
-	};
-	localStorage.setItem("posts", JSON.stringify([...currentPosts, newData]));
-};
