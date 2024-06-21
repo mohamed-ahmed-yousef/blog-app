@@ -2,11 +2,11 @@ import type { Page } from "@/types";
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function PostCard({ page }: { page: Page }) {
+export default function PostCard({ post }: { post: Page }) {
 	return (
 		<StyledPostCard>
-			<H1>{page.title}</H1>
-			<Link href={`/post/${page.id}`} className="text-blue-600 underline">
+			<H1>{post.title}</H1>
+			<Link href={`/post/${post.id}`} className="text-blue-600 underline">
 				Read more
 			</Link>
 		</StyledPostCard>

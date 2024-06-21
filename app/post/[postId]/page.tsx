@@ -1,5 +1,9 @@
 "use client";
 import { useGetOnePost } from "@/api/hooks/use-posts";
+import { getCurrentPosts } from "@/app/create-post/page";
+import { Main } from "@/components/styled-components/main";
+import { P } from "@/components/styled-components/p";
+import { Section } from "@/components/styled-components/section";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import Link from "next/link";
 import styled from "styled-components";
@@ -9,17 +13,29 @@ export default function CurrentPost({
 	params,
 }: { params: { postId: string } }) {
 	const { data, isPending } = useGetOnePost({ id: params.postId });
+	const createdPost = getCurrentPosts().find(
+		(post) => post.id === Number(params.postId),
+	);
+
 	if (isPending)
-		return <LoadingSpinner size={100} className=" h-screen m-auto" />;
-	if (!data) return <NotFound />;
+		return (
+			<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
+				<LoadingSpinner size={40} className="absolute m-0" />
+			</div>
+		);
+
+	const finalData = { ...data, ...createdPost };
+	console.info(finalData, data, createdPost, "final data");
+	if (!finalData) return <NotFound />;
+	console.info(finalData, "final data");
 
 	return (
 		<Main>
 			<Section>
-				<Title>{data.title}</Title>
-				<Subtitle>User ID: {data.userId}</Subtitle>
-				<Subtitle>Post ID: {data.id}</Subtitle>
-				<P>{data.body}</P>
+				<Title>{finalData.title}</Title>
+				<Subtitle>User ID: {finalData.userId}</Subtitle>
+				<Subtitle>Post ID: {finalData.id}</Subtitle>
+				<P>{finalData.body}</P>
 				<Link href="/" className="mt-6 text-blue-600 underline">
 					Go Back
 				</Link>
@@ -27,30 +43,6 @@ export default function CurrentPost({
 		</Main>
 	);
 }
-
-const Main = styled.main`
-	display: flex;
-	justify-items: center;
-	height: 100vh;
-	align-items: center;
-	background-color: #0f172a;
-`;
-const Section = styled.section`
-  padding: 20px;
-    border-radius: 8px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	max-width: 800px;
-  margin: 40px auto;
-  color: #020617;
-  height: fit-content;
-  transition: all 0.3s ease-in-out;
-  background-color: #94a3b8;
-
-&:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #cbd5e1;
-}
-`;
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -63,9 +55,4 @@ const Subtitle = styled.h2`
   font-size: 1.5rem;
   color: #0f172a;
   font-weight: 500;
-`;
-const P = styled.p`
-	font-size:1.1rem;
-	margin: .4rem 0px;
-	
 `;

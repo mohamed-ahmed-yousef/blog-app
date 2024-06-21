@@ -39,4 +39,8 @@
 
 - use to handle styling
 
+### Next nprogress bar
+
+- used to make progress bar
+
 ## Project parts
