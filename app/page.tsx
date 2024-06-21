@@ -2,6 +2,8 @@
 import { useGetPosts } from "@/api/hooks/use-posts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import type { Pages } from "@/types";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import styled from "styled-components";
 import PostCard from "./_components/card";
 
@@ -12,10 +14,21 @@ export default function Home() {
 		return <LoadingSpinner className="w-20 h-screen m-auto" />;
 
 	const newData: Pages = data.pages;
-	console.info(newData, "page info");
+	// console.info(newData, "page info");
 	return (
-		<main className="page-container bg-slate-200 text-slate-950">
-			<Title>Posts</Title>
+		<main className="page-container bg-slate-900 text-slate-950">
+			<Flex>
+				<Title>Posts</Title>
+				<Flex>
+					<Button>
+						<Link href="/create-post">
+							<Flex>
+								<Plus /> Add Post
+							</Flex>
+						</Link>
+					</Button>
+				</Flex>
+			</Flex>
 			<section className="md:grid-cols-2 lg:grid-cols-3 grid gap-3">
 				{Array.isArray(newData) &&
 					newData.map((page) =>
@@ -42,14 +55,19 @@ export default function Home() {
 }
 
 const Title = styled.h1`
-	margin: .2rem auto;
+	margin: .2rem 0px;
 	font-size: 2.5rem;
-	width: fit-content;
 	font-weight: 500;
-	
+	color: #e2e8f0;
+
+`;
+const Flex = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: #1e293b;
 
 margin: 20px auto;
