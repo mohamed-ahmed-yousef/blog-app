@@ -7,7 +7,7 @@ export const Section = styled.section`
   width: min(800px, 96vw);
   margin: 40px auto;
   color: #020617;
-  height: fit-content;
+
   transition: all 0.3s ease-in-out;
   background-color: #94a3b8;
 `;
