@@ -1,12 +1,12 @@
 "use client";
 import { useGetOnePost } from "@/api/hooks/use-posts";
 import { getCurrentPosts } from "@/app/_components/lib/add-post";
+import { StyledLink } from "@/components/styled-components/link";
+import { CustomizeSpinner } from "@/components/styled-components/loading-spinner";
 import { Main } from "@/components/styled-components/main";
 import { P } from "@/components/styled-components/p";
 import { Section } from "@/components/styled-components/section";
-import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import type { Page } from "@/types";
-import Link from "next/link";
 import styled from "styled-components";
 import NotFound from "../../not-found";
 
@@ -18,12 +18,7 @@ export default function CurrentPost({
 		(post: Page) => post.id === Number(params.postId),
 	);
 
-	if (isPending)
-		return (
-			<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
-				<LoadingSpinner size={40} className="absolute m-0" />
-			</div>
-		);
+	if (isPending) return <CustomizeSpinner />;
 
 	const finalData = { ...data, ...createdPost };
 	console.info(finalData, data, createdPost, "final data");
@@ -37,9 +32,7 @@ export default function CurrentPost({
 				<Subtitle>User ID: {finalData.userId}</Subtitle>
 				<Subtitle>Post ID: {finalData.id}</Subtitle>
 				<P>{finalData.body}</P>
-				<Link href="/" className="mt-6 text-blue-600 underline">
-					Go Back
-				</Link>
+				<StyledLink href="/">Go Back</StyledLink>
 			</Section>
 		</Main>
 	);

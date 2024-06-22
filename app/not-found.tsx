@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { StyledLink } from "@/components/styled-components/link";
 import styled from "styled-components";
 
 const NotFound = () => {
@@ -13,8 +13,7 @@ const NotFound = () => {
 			<StyledMsg>
 				<p>This page Not Found</p>
 				<p>
-					Let's go <StyledHomeLink href="/">home</StyledHomeLink> and try from
-					there.
+					Let's go <StyledLink href="/">home</StyledLink> and try from there.
 				</p>
 			</StyledMsg>
 		</Main>
@@ -49,15 +48,4 @@ const StyledMsg = styled.div`
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.6rem;
   width: 75%;
-`;
-
-const StyledHomeLink = styled(Link)`
-  text-decoration: none;
-  color: #3b82f6;
-  text-decoration: underline;
-
-
-  &:hover {
-    text-decoration: underline;
-  }
 `;

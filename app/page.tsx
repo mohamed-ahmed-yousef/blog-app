@@ -1,6 +1,7 @@
 "use client";
 import { useGetPosts } from "@/api/hooks/use-posts";
 import { Button } from "@/components/styled-components/button";
+import { CustomizeSpinner } from "@/components/styled-components/loading-spinner";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import type { Pages } from "@/types";
 import { Plus } from "lucide-react";
@@ -12,12 +13,7 @@ import { getCurrentPosts } from "./_components/lib/add-post";
 export default function Home() {
 	const { data, isPending, fetchNextPage, hasNextPage, isFetchingNextPage } =
 		useGetPosts();
-	if (isPending || !data)
-		return (
-			<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
-				<LoadingSpinner size={40} className="absolute m-0" />
-			</div>
-		);
+	if (isPending || !data) return <CustomizeSpinner />;
 
 	const newData: Pages = data.pages;
 	const createdPost = getCurrentPosts();

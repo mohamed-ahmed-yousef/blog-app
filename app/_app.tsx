@@ -1,6 +1,6 @@
 "use client";
 
-import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { CustomizeSpinner } from "@/components/styled-components/loading-spinner";
 import {
 	HydrationBoundary,
 	QueryClient,
@@ -13,21 +13,10 @@ import NavBar from "./_components/nav-bar";
 
 const queryClient = new QueryClient();
 export default function App({ children }: { children: React.ReactNode }) {
-	if (typeof window === "undefined")
-		return (
-			<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
-				<LoadingSpinner size={40} className="absolute m-0" />
-			</div>
-		);
+	if (typeof window === "undefined") return <CustomizeSpinner />;
 
 	return (
-		<Suspense
-			fallback={
-				<div className="fixed flex items-center justify-center w-screen h-screen overflow-hidden">
-					<LoadingSpinner size={40} className="absolute m-0" />
-				</div>
-			}
-		>
+		<Suspense fallback={<CustomizeSpinner />}>
 			<ProgressBar
 				height="4px"
 				color="hsl(var(--secondary))"
