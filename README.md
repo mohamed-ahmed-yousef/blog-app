@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-1.
+1. Step one
 
 ```sh
     git clone https://github.com/mohamed-ahmed-yousef/blog-app.git
@@ -11,7 +11,11 @@
     pnpm dev
 ```
 
-2. add the `NEXT_PUBLIC_BACKEND_URL` in `.env` file
+1. Step two
+
+- add the `NEXT_PUBLIC_BACKEND_URL` in `.env` file
+
+# lib used.
 
 ### lefthook
 
