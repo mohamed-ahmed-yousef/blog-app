@@ -22,7 +22,7 @@ export default function CurrentPost({
 
 	const finalData = { ...data, ...createdPost };
 	console.info(finalData, data, createdPost, "final data");
-	if (!finalData) return <NotFound />;
+	if (!data || !createdPost) return <NotFound />;
 	console.info(finalData, "final data");
 
 	return (
