@@ -1,14 +1,12 @@
+import { StyledLink } from "@/components/styled-components/link";
 import type { Page } from "@/types";
-import Link from "next/link";
 import styled from "styled-components";
 
 export default function PostCard({ post }: { post: Page }) {
 	return (
 		<StyledPostCard>
 			<H1>{post.title}</H1>
-			<Link href={`/post/${post.id}`} className="text-blue-600 underline">
-				Read more
-			</Link>
+			<StyledLink href={`/post/${post.id}`}>Read more</StyledLink>
 		</StyledPostCard>
 	);
 }
