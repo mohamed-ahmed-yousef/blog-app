@@ -2,7 +2,7 @@
 import { Button } from "@/components/styled-components/button";
 import { Main } from "@/components/styled-components/main";
 import { Section } from "@/components/styled-components/section";
-import { FormInput } from "@/components/ui/input-form";
+import { FormInput, TextareaField } from "@/components/ui/input-form";
 import { useToast } from "@/components/ui/use-toast";
 import { useZodForm } from "@/lib/use-zod-schema";
 import { useRouter } from "next/navigation";
@@ -39,7 +39,7 @@ export default function CreatePost() {
 						onSubmit={form.handleSubmit((data) => handleSubmit(data))}
 					>
 						<FormInput name="title" label="Title" />
-						<FormInput name="body" label="Body" />
+						<TextareaField name="body" label="Body" />
 						<Button>Create post</Button>
 					</StyledForm>
 				</FormProvider>
