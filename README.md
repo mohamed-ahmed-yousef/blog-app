@@ -41,11 +41,11 @@
 
 - use to handle form validation and other validation logic
 
-### shadcn ui
+### shadcn ui & tailwindcss
 
 - used to reusable ui components
 
-### tailwindcss & styled components
+### styled components
 
 - use to handle styling
 
